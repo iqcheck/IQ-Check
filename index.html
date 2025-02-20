@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IQ Check</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    #language-switcher {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <!-- Contenedor de la página de inicio -->
+  <div id="landing-container">
+    <div class="container">
+      <!-- Botón de cambio de idioma -->
+  <div id="language-switcher">
+    <button id="switch-to-en">English</button>
+    <button id="switch-to-es">Español</button>
+  </div>
+      <h1 id="welcome-title">Bienvenido al Test de IQ Check</h1>
+      <p id="welcome-description">Descubre tu Coeficiente Intelectual respondiendo 40 preguntas.</p>
+      <button id="start-test-btn">Empezar Test</button>
+      <p id="donation-message" class="donation-message">La publicidad y las donaciones nos ayudan a seguir mejorando esta página.</p>
+      <a href="https://www.paypal.com/ncp/payment/EFB5EQ5NTUSSY" id="donate-link-results" class="donate-button">
+        <i class="fab fa-paypal"></i> <span id="donate-text">Haz una donación</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Contenedor del test -->
+  <div id="quiz-container" style="display: none;">
+    <header>
+      <div class="container">
+        <h1 id="quiz-title">Test de Coeficiente Intelectual</h1>
+        <p id="quiz-description">Responde las siguientes 40 preguntas para obtener tu puntaje.</p>
+        <div id="timer" class="timer">Tiempo restante: 40:00</div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <form id="quiz-form">
+          <div id="questions-container"></div>
+          <button type="submit" id="submit-btn">Enviar Respuestas</button>
+        </form>
+        <div id="result-container"></div>
+      </div>
+      <div id="error-message" style="display: none; color: red; font-weight: bold; font-size: 1.2em; text-align: center;">
+        Debes responder al menos 20 preguntas para obtener tu resultado.
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <p>&copy; <span id="footer-year">2025</span> <span id="footer-text">Test de CI Profesional. Todos los derechos reservados.</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Pestaña emergente de carga -->
+  <div id="loading-overlay" style="display: none;">
+    <div class="loader-container">
+       <div class="loader"></div>
+       <p id="loading-text">Calculando resultados...</p>
+    </div>
+  </div>
+
+  <!-- Resultados del test -->
+  <div id="results-container" style="display: none;">
+    <div class="container">
+      <h2 id="results-title">Resultado del Test</h2>
+      <div id="score"></div>
+      <p id="personalized-message"></p>
+      <p id="share-message">¡Comparte tu resultado y desafía a tus amigos!</p>
+      <button id="share-facebook-btn">
+        <i class="fab fa-facebook-f"></i> <span id="share-facebook-text">Compartir en Facebook</span>
+      </button>
+      <button id="share-twitter-btn">
+        <i class="fab fa-twitter"></i> <span id="share-twitter-text">Compartir en X</span>
+      </button>
+      <button id="share-whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> <span id="share-whatsapp-text">Compartir en WhatsApp</span>
+      </button>
+      <p id="donation-message-results" class="donation-message">La publicidad y las donaciones nos ayudan a seguir mejorando esta página.</p>
+      <a href="https://www.paypal.com/ncp/payment/EFB5EQ5NTUSSY" id="donate-link-results" class="donate-button">
+        <i class="fab fa-paypal"></i> <span id="donate-text-results">Haz una donación</span>
+      </a>
+      <button id="retry-btn">Volver a hacer el test</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

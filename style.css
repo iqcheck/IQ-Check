@@ -1,0 +1,652 @@
+/* Variables de colores para un diseño coherente */
+:root {
+    --primary-color: #00c3ff;
+    --secondary-color: #F5A623;
+    --secondary-hover: #d4881c;
+    --background-color: linear-gradient(90deg, #ffffff, #00c3ff);
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --timer-bg: #333;
+    --timer-color: #fff;
+}
+/* Aplicar el degradado al body */
+body {
+    background: var(--background-color);
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Reset de estilos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Contenedor principal */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Landing Page */
+#landing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#landing-container h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+#landing-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#start-test-btn {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    color: white;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); /* Sombra inicial */
+}
+
+#start-test-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%);
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#start-test-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: glow 2s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(100%);
+    }
+}
+
+@keyframes glow {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+#start-test-btn:hover {
+    background-color: darken(var(--secondary-color), 10%);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6); /* Sombra más intensa al hacer hover */
+}
+
+
+
+.donation-message {
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+#donate-link, #donate-link-results {
+    display: inline-block;
+    padding: 15px 25px; /* Mismo padding que el botón de reintentar */
+    font-size: 1.2em; /* Mismo tamaño de fuente */
+    color: white;
+    background-color: #a5a5a5;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 10px; /* Mismo margen superior que el botón de reintentar */
+}
+
+#donate-link::before, #donate-link-results::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%);
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#donate-link::after, #donate-link-results::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: glow 2s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(100%);
+    }
+}
+
+@keyframes glow {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+#donate-link:hover, #donate-link-results:hover {
+    background-color: #838383;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6); /* Sombra más intensa al hacer hover */
+}
+
+/* Contenedor del Test */
+#quiz-container {
+    display: none;
+    margin-top: 40px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+.timer {
+    background-color: var(--timer-bg);
+    color: var(--timer-color);
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+    animation: pulse 2s infinite alternate; /* Animación sutil */
+}
+.timer.alert {
+    animation: pulse-alert 2s infinite alternate; /* Animación específica para el modo alerta */
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Tamaño normal */
+        background-color: var(--timer-bg); /* Color de fondo inicial */
+    }
+    100% {
+        transform: scale(1.03); /* Ligero aumento de tamaño */
+        background-color: #808080; /* Cambia a un gris claro */
+    }
+}
+@keyframes pulse-alert {
+    0% {
+        transform: scale(1); /* Tamaño normal */
+        background-color: #9c1c1c; /* Fondo rojo */
+    }
+    100% {
+        transform: scale(1.03); /* Ligero aumento de tamaño */
+        background-color: #e45858; /* Fondo rojo más claro */
+    }
+}
+main {
+    margin: 40px 0;
+}
+
+#quiz-form {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.question-block {
+    margin-bottom: 25px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.question-block:last-child {
+    border-bottom: none;
+}
+
+.question-block p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.options label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.options label:hover {
+    color: var(--primary-color);
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* Botón de envío */
+#submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    font-family: sans-serif; /* Fuente genérica sans-serif */
+    font-weight: 600; /* Peso de la fuente para mejor legibilidad */
+    letter-spacing: 0.5px; /* Espaciado entre letras para mejor estética */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+#submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%);
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: glow 2s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg) translateX(100%);
+    }
+}
+
+@keyframes glow {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+#submit-btn:hover {
+    background-color: darken(var(--secondary-color), 10%);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al hacer hover */
+}
+
+#submit-btn:active {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Restablece la sombra al hacer clic */
+}
+
+#submit-btn:hover {
+    background-color: var(--secondary-hover);
+    transform: scale(1.02);
+}
+
+/* Contenedor de resultados */
+#results-container {
+    display: none;
+    background-color: var(--background-color);
+    padding: 40px 0;
+    text-align: center;
+}
+
+#results-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#score {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+
+
+footer {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+/* Overlay para la rueda de carga */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté encima de todo */
+ }
+ 
+ .loader-container {
+    text-align: center;
+    color: white;
+ }
+ 
+ .loader {
+    border: 4px solid #f3f3f3; 
+    border-top: 4px solid #3498db; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+ }
+ 
+ @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+ }
+ 
+ /* Estilo del botón de intentar de nuevo */
+ #retry-btn {
+    display: inline-block;
+    padding: 15px 25px; /* Mismo padding que el botón de donación */
+    background-color: #00aeff;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-left: 20px; /* Espacio a la derecha */
+    margin-top: 10px; /* Mismo margen superior que el botón de donación */
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* Animación de brillo al hacer hover */
+#retry-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateY(-50%);
+    animation: glow 2s infinite linear;
+}
+
+@keyframes glow {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Efecto al hacer hover */
+#retry-btn:hover {
+    background-color: #0099cc; /* Color más oscuro al hacer hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave al hacer hover */
+}
+
+/* Efecto al hacer clic */
+#retry-btn:active {
+    transform: scale(0.98); /* Ligera reducción de tamaño al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña al hacer clic */
+}
+/* Estilos para la pantalla de inicio */
+#landing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Fondo con degradado en tonos azules */
+    background: linear-gradient(135deg, #0069f3, #81effd);
+    text-align: center;
+    color: #fff;
+}
+
+#landing-container .container {
+    padding: 20px;
+    max-width: 600px;
+}
+
+#landing-container h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#landing-container p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+#start-test-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #fff;
+    color: #007AFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#start-test-btn:hover {
+    background-color: #e6e6e6;
+    transform: scale(1.05);
+}
+
+.donation-message {
+    margin-top: 20px;
+    font-size: 1em;
+    opacity: 0.9;
+}
+#personalized-message {
+    margin-top: 20px;
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+#donate-link:hover {
+    color: #e6e6e6;
+}
+/* Estilos generales para los botones de compartir */
+#share-facebook-btn,
+#share-twitter-btn,
+#share-whatsapp-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px; /* Espacio entre botones */
+}
+
+/* Estilo específico para Facebook */
+#share-facebook-btn {
+    background-color: #1877F2; /* Azul de Facebook */
+}
+
+#share-facebook-btn:hover {
+    background-color: #145fc0; /* Azul más oscuro al pasar el mouse */
+}
+
+/* Estilo específico para Twitter */
+#share-twitter-btn {
+    background-color: #000000; /* Negro de Twitter (X) */
+}
+
+#share-twitter-btn:hover {
+    background-color: #333333; /* Gris oscuro al pasar el mouse */
+}
+
+/* Estilo específico para WhatsApp */
+#share-whatsapp-btn {
+    background-color: #25D366; /* Verde de WhatsApp */
+}
+
+#share-whatsapp-btn:hover {
+    background-color: #128c63; /* Verde más oscuro al pasar el mouse */
+}
+/* Estilos para el contenedor de los botones de idioma */
+#language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilos base para los botones de idioma */
+#language-switcher button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #00c3ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat'
+}
+
+/* Efecto hover para los botones */
+#language-switcher button:hover {
+    background-color: #7ad5ff;
+    transform: scale(1.05);
+}
+
+/* Estilos para las banderas */
+#language-switcher button::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 16px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Bandera del Reino Unido para el botón de inglés */
+#switch-to-en::before {
+    background-image: url('https://flagcdn.com/gb.svg');
+}
+
+/* Bandera de España para el botón de español */
+#switch-to-es::before {
+    background-image: url('https://flagcdn.com/es.svg');
+}
+#donate-link, #donate-link-results, #retry-btn {
+    box-sizing: border-box;
+    line-height: 1.5;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.fab.fa-paypal {
+    margin-right: 5px; /* Ajusta este valor según sea necesario */
+}
