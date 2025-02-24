@@ -232,17 +232,20 @@ function detectLanguage() {
 // Cambiar idioma manualmente
 document.getElementById("switch-to-en").addEventListener("click", () => {
     localStorage.setItem("preferredLanguage", "en");
+    document.documentElement.setAttribute('lang', 'en'); // Actualizar el atributo lang
     updateContent("en");
 });
 
 document.getElementById("switch-to-es").addEventListener("click", () => {
     localStorage.setItem("preferredLanguage", "es");
+    document.documentElement.setAttribute('lang', 'es'); // Actualizar el atributo lang
     updateContent("es");
 });
 
 // Inicializar la página con el idioma detectado
 window.onload = function () {
     const lang = detectLanguage();
+    document.documentElement.setAttribute('lang', lang); // Actualizar el atributo lang
     updateContent(lang);
     loadQuestions(lang); // Cargar preguntas en el idioma correcto
 };
@@ -389,24 +392,115 @@ document.getElementById('retry-btn').addEventListener('click', function () {
     answeredQuestions = 0; // Reiniciar el contador de preguntas respondidas
 });
 
-// Funciones para compartir en redes sociales
+// Función para compartir en Facebook
 document.getElementById('share-facebook-btn').addEventListener('click', function () {
-    const totalScore = parseInt(document.getElementById('score').textContent.replace(/\D/g, ''), 10); // Extraer el puntaje
-    const shareMessage = `Mi IQ es ${totalScore}, ¿puedes superarme? ¡Haz el test aquí! ${window.location.href}`;
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareMessage)}`;
-    window.open(facebookUrl, '_blank');
+    shareOnSocialMedia('facebook');
 });
 
+// Función para compartir en Twitter
 document.getElementById('share-twitter-btn').addEventListener('click', function () {
-    const totalScore = parseInt(document.getElementById('score').textContent.replace(/\D/g, ''), 10); // Extraer el puntaje
-    const shareMessage = `Mi IQ es ${totalScore}, ¿puedes superarme? ¡Haz el test aquí! ${window.location.href}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`;
-    window.open(twitterUrl, '_blank');
+    shareOnSocialMedia('twitter');
 });
 
+// Función para compartir en WhatsApp
 document.getElementById('share-whatsapp-btn').addEventListener('click', function () {
-    const totalScore = parseInt(document.getElementById('score').textContent.replace(/\D/g, ''), 10); // Extraer el puntaje
-    const shareMessage = `Mi IQ es ${totalScore}, ¿puedes superarme? ¡Haz el test aquí! ${window.location.href}`;
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
-    window.open(whatsappUrl, '_blank');
+    shareOnSocialMedia('whatsapp');
 });
+
+// Función para compartir en Facebook
+document.getElementById('share-facebook-btn').addEventListener('click', function () {
+    shareOnSocialMedia('facebook');
+});
+
+// Función para compartir en Twitter
+document.getElementById('share-twitter-btn').addEventListener('click', function () {
+    shareOnSocialMedia('twitter');
+});
+
+// Función para compartir en WhatsApp
+document.getElementById('share-whatsapp-btn').addEventListener('click', function () {
+    shareOnSocialMedia('whatsapp');
+});
+
+// Función para cambiar el idioma
+function changeLanguage(lang) {
+    // Actualizar el atributo lang en el <html>
+    document.documentElement.setAttribute('lang', lang)}
+
+// Función genérica para compartir en redes sociales
+function shareOnSocialMedia(platform) {
+    // Extraer el puntaje
+    const totalScore = parseInt(document.getElementById('score').textContent.replace(/\D/g, ''), 10);
+
+    // Obtener el idioma de la página
+    const language = document.documentElement.getAttribute('lang');
+    console.log('Idioma detectado:', language); // Depuración: Verificar el idioma
+
+    // Generar el mensaje según el idioma
+    let iqShareMessage;
+    if (language === 'es') {
+        iqShareMessage = `Mi IQ es ${totalScore}, ¿puedes superarme? ¡Haz el test aquí! https://iqcheck.online`;
+    } else {
+        iqShareMessage = `My IQ is ${totalScore}, can you beat me? Take the test here! https://iqcheck.online`;
+    }
+
+    // Generar la URL según la plataforma
+    let url;
+    switch (platform) {
+        case 'facebook':
+            url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(iqShareMessage)}`;
+            break;
+        case 'twitter':
+            url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(iqShareMessage)}`;
+            break;
+        case 'whatsapp':
+            url = `https://api.whatsapp.com/send?text=${encodeURIComponent(iqShareMessage)}`;
+            break;
+        default:
+            console.error('Plataforma no soportada');
+            return;
+    }
+
+    // Abrir la URL en una nueva pestaña
+    window.open(url, '_blank');
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const userLang = navigator.language || navigator.userLanguage; // Obtener el idioma del navegador
+    let metaDescription = document.querySelector("meta[name='description']"); // Buscar la etiqueta <meta>
+  
+    // Si no existe la etiqueta <meta>, la creamos
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription); // Agregar la etiqueta al <head>
+    }
+  
+    // Configurar el título y la descripción según el idioma
+    if (userLang.startsWith("en")) {
+      document.title = "IQ Check - Free Online IQ Test";
+      metaDescription.setAttribute("content", "Take a Free online IQ Test and accurately measure your intelligence. Find out your IQ now with IQ Check!");
+    } else {
+      document.title = "IQ Check - Test de Coeficiente Intelectual Online Gratis";
+      metaDescription.setAttribute("content", "Realiza un Test de Coeficiente Intelectual (IQ) online GRATIS y descubre tu IQ con precisión. ¡Comprueba tu inteligencia ahora con IQ Check!");
+    }
+  });
+document.addEventListener("DOMContentLoaded", function() {
+    const userLang = navigator.language || navigator.userLanguage;
+    
+    // Cambiar el título según el idioma
+    if (userLang.startsWith("en")) {
+      // Open Graph (Inglés)
+      document.querySelector('meta[property="og:title"]').setAttribute("content", "IQ Check - Free Online IQ Test | Discover Your Intelligence");
+      document.querySelector('meta[property="og:description"]').setAttribute("content", "Take a free IQ test and measure your intelligence with accuracy. Find out your IQ now!");
+      document.querySelector('meta[name="twitter:title"]').setAttribute("content", "IQ Check - Free Online IQ Test | Discover Your Intelligence");
+      document.querySelector('meta[name="twitter:description"]').setAttribute("content", "Take a free IQ test and measure your intelligence online. Start now!");
+    } else { 
+      // Open Graph (Español)
+      document.querySelector('meta[property="og:title"]').setAttribute("content", "IQ Check - Test de IQ Online Gratis | Descubre tu Inteligencia");
+      document.querySelector('meta[property="og:description"]').setAttribute("content", "Realiza un test de IQ gratuito y descubre tu inteligencia con precisión. ¡Hazlo ahora!");
+      document.querySelector('meta[name="twitter:title"]').setAttribute("content", "IQ Check - Test de IQ Online Gratis | Descubre tu Inteligencia");
+      document.querySelector('meta[name="twitter:description"]').setAttribute("content", "Haz un test de IQ gratis y mide tu inteligencia online. ¡Comienza ahora!");
+    }
+  });
